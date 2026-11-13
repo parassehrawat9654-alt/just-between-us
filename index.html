@@ -1,0 +1,1828 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f0e5">
+  <meta name="description" content="A little corner of the internet for our memories, letters, and everything still to come.">
+  <meta property="og:image" content="https://our-little-world.pages.dev/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <title>Just Us — our little world</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Just Us — our little world */
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat:wght@500;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap');
+
+    :root {
+      --bg: #f4f0e5;
+      --bg-2: #f0eadd;
+      --rose: #b83c3c;
+      --rose-dark: #8f2d2d;
+      --rose-light: #e8cfcf;
+      --cream: #f7efd8;
+      --cream-2: #efe7d0;
+      --ink: #3d2b2b;
+      --muted: #6b5555;
+      --border: #b83c3c;
+      --shadow: rgba(61, 43, 43, 0.12);
+      --window-shadow: 8px 8px 0 rgba(61, 43, 43, 0.12);
+      --font-display: 'Bebas Neue', 'Anton', Impact, sans-serif;
+      --font-body: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-hand: 'Caveat', 'Kalam', 'Dancing Script', cursive;
+      --font-mono: 'Space Mono', 'Fira Code', 'Courier New', monospace;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-body);
+      line-height: 1.55;
+      overflow-x: hidden;
+    }
+
+    .mono { font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.08em; }
+    .hand { font-family: var(--font-hand); }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 4vw;
+      background: rgba(244, 240, 229, 0.92);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid rgba(184, 60, 60, 0.18);
+    }
+    .brand {
+      display: flex;
+      align-items: baseline;
+      gap: 0.4rem;
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      color: var(--rose);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+    }
+    .tiny-heart { font-size: 0.9rem; }
+    .version { font-family: var(--font-mono); font-size: 0.6rem; color: var(--muted); letter-spacing: 0.1em; }
+
+    nav { display: flex; align-items: center; gap: 1.2rem; }
+    nav a, nav button {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink);
+      text-decoration: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.35rem 0;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+    nav a:hover, nav button:hover { border-bottom-color: var(--rose); color: var(--rose); }
+
+    .online {
+      display: flex; align-items: center; gap: 0.45rem;
+      font-family: var(--font-mono); font-size: 0.65rem; color: var(--muted);
+    }
+    .online i {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: #4caf50;
+      box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.25);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.6} }
+
+    /* Hero */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      padding: 4vh 6vw 6vh;
+      min-height: calc(100vh - 70px);
+    }
+    .eyebrow {
+      display: flex; justify-content: space-between;
+      padding: 1.2rem 6vw 0;
+      font-family: var(--font-mono); font-size: 0.68rem; color: var(--muted);
+      text-transform: uppercase; letter-spacing: 0.12em;
+    }
+    .hero-copy { max-width: 620px; }
+    .hero-copy .mono { color: var(--rose); font-size: 0.75rem; margin-bottom: 1rem; }
+    .hero-copy h1 {
+      font-family: var(--font-display);
+      font-size: clamp(4rem, 9vw, 8.5rem);
+      line-height: 0.92;
+      margin: 0 0 1.5rem;
+      color: var(--rose);
+      letter-spacing: 0.02em;
+    }
+    .hero-copy h1 span { color: var(--rose); display: inline-block; }
+    .cursor { animation: blink 1s step-end infinite; font-weight: 400; }
+    @keyframes blink { 50% { opacity: 0; } }
+    .intro { font-size: 1.05rem; color: var(--muted); margin-bottom: 2rem; max-width: 460px; }
+    .primary {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: var(--rose); color: #fff;
+      font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em;
+      padding: 1rem 1.4rem;
+      text-decoration: none;
+      border: 1px solid var(--rose-dark);
+      box-shadow: 4px 4px 0 var(--shadow);
+      transition: transform 0.15s, box-shadow 0.15s;
+      cursor: pointer;
+    }
+    .primary:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--shadow); }
+    .hero-note { display: block; margin-top: 1.2rem; font-size: 1.25rem; color: var(--rose); transform: rotate(-2deg); }
+
+    /* Hero art */
+    .hero-art {
+      position: relative;
+      min-height: 520px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .floating-label {
+      position: absolute; top: 0; right: 5%;
+      font-family: var(--font-mono); font-size: 0.6rem; color: var(--muted);
+      text-transform: uppercase; letter-spacing: 0.1em;
+      background: var(--bg); padding: 0.3rem 0.6rem; border: 1px solid rgba(184,60,60,0.2);
+    }
+    .love-window {
+      width: min(420px, 90%);
+      background: var(--bg);
+      border: 2px solid var(--rose);
+      box-shadow: var(--window-shadow);
+      transform: rotate(-3deg);
+    }
+    .love-window .titlebar {
+      display: flex; justify-content: space-between; align-items: center;
+      background: var(--rose); color: #fff;
+      padding: 0.5rem 0.8rem;
+      font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.06em;
+    }
+    .letter-preview { padding: 1.8rem; text-align: center; }
+    .letter-preview .mono { color: var(--muted); font-size: 0.6rem; margin-bottom: 0.8rem; }
+    .letter-preview .pixel-heart { font-size: 3.5rem; color: var(--rose); line-height: 1; margin: 0.5rem 0; }
+    .letter-preview h2 { font-family: var(--font-body); font-size: 1.6rem; font-weight: 600; color: var(--ink); margin: 0.8rem 0; line-height: 1.25; }
+    .letter-preview p { color: var(--muted); font-size: 0.95rem; margin-bottom: 1rem; }
+    .letter-preview .hand { font-size: 1.4rem; color: var(--rose); }
+    .letter-footer {
+      margin-top: 1.2rem; padding-top: 0.8rem;
+      border-top: 1px dashed rgba(184,60,60,0.35);
+      font-family: var(--font-mono); font-size: 0.55rem; color: var(--muted);
+      display: flex; justify-content: space-between;
+    }
+
+    .sticky {
+      position: absolute; bottom: 8%; right: -5%;
+      width: 170px; min-height: 170px;
+      background: var(--cream);
+      padding: 1.2rem 1rem;
+      transform: rotate(8deg);
+      box-shadow: 4px 4px 0 rgba(61,43,43,0.1);
+    }
+    .tape {
+      position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+      width: 70px; height: 22px;
+      background: rgba(255,255,255,0.55);
+      border: 1px solid rgba(184,60,60,0.15);
+    }
+    .sticky p { font-family: var(--font-hand); font-size: 1.35rem; color: var(--ink); margin: 0.2rem 0 0.8rem; line-height: 1.1; }
+    .sticky > span:last-child { color: var(--rose); font-size: 1.2rem; }
+
+    .desktop-file {
+      position: absolute; bottom: 6%; left: 5%;
+      text-align: center;
+    }
+    #folder-art {
+      display: block; width: 54px; height: 40px;
+      background: var(--rose-light);
+      border: 2px solid var(--rose);
+      border-radius: 2px 6px 2px 2px;
+      position: relative;
+      margin: 0 auto 0.4rem;
+    }
+    #folder-art::before {
+      content: ''; position: absolute; top: -8px; left: 4px;
+      width: 22px; height: 8px;
+      background: var(--rose-light); border: 2px solid var(--rose); border-bottom: none;
+      border-radius: 3px 3px 0 0;
+    }
+    .desktop-file small { font-family: var(--font-mono); font-size: 0.55rem; color: var(--muted); }
+    .art-spark {
+      position: absolute; top: 18%; right: 0;
+      font-size: 2rem; color: var(--rose);
+      animation: sparkle 2.5s ease-in-out infinite;
+    }
+    @keyframes sparkle { 0%,100%{transform:scale(1)} 50%{transform:scale(1.2)} }
+
+    /* Ticker */
+    .ticker {
+      display: flex; align-items: center; justify-content: center; gap: 2rem;
+      padding: 1.1rem 4vw;
+      border-top: 1px solid var(--rose); border-bottom: 1px solid var(--rose);
+      font-family: var(--font-mono); font-size: 0.72rem; color: var(--rose);
+      text-transform: uppercase; letter-spacing: 0.1em;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+    .ticker b { font-size: 1rem; }
+
+    /* Collection */
+    #collection { padding: 6vh 6vw; }
+    .section-heading {
+      display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem;
+      margin-bottom: 2.5rem;
+    }
+    .section-heading .mono { color: var(--rose); font-size: 0.7rem; margin-bottom: 0.6rem; }
+    .section-heading h2 { font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4.2rem); color: var(--rose); margin: 0; letter-spacing: 0.02em; line-height: 1; }
+    .section-heading h2 em { font-family: var(--font-hand); font-size: 0.75em; font-weight: 700; font-style: normal; }
+    .section-heading > p { color: var(--muted); text-align: right; margin: 0; }
+
+    .desktop-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .desktop-card {
+      background: var(--bg);
+      border: 1px solid var(--rose);
+      box-shadow: 5px 5px 0 var(--shadow);
+      display: flex; flex-direction: column;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .desktop-card:hover { transform: translate(-3px, -3px); box-shadow: 8px 8px 0 var(--shadow); }
+    .desktop-card .card-header {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.55rem 0.8rem;
+      border-bottom: 1px solid var(--rose);
+      font-family: var(--font-mono); font-size: 0.6rem; color: var(--rose); text-transform: uppercase;
+    }
+    .desktop-card .card-body {
+      flex: 1;
+      padding: 1.6rem 1.4rem;
+      display: flex; flex-direction: column; justify-content: center;
+      min-height: 180px;
+    }
+    .desktop-card .card-icon { font-size: 2.4rem; margin-bottom: 0.8rem; color: var(--rose); line-height: 1; }
+    .desktop-card h3 { font-family: var(--font-display); font-size: 2rem; color: var(--rose); margin: 0 0 0.4rem; letter-spacing: 0.02em; line-height: 1.05; }
+    .desktop-card p { color: var(--muted); font-size: 0.92rem; margin: 0; }
+    .desktop-card .card-footer {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.75rem 0.9rem;
+      border-top: 1px solid var(--rose);
+      font-family: var(--font-mono); font-size: 0.58rem; color: var(--rose); text-transform: uppercase; letter-spacing: 0.06em;
+    }
+    .desktop-card.wide { grid-column: span 2; }
+    .desktop-card.note {
+      background: transparent; border: none; box-shadow: none;
+      justify-content: center; align-items: flex-start;
+      padding: 1rem;
+      cursor: default;
+    }
+    .desktop-card.note:hover { transform: none; box-shadow: none; }
+    .desktop-card.note .note-label { font-family: var(--font-mono); font-size: 0.6rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.8rem; }
+    .desktop-card.note p { font-family: var(--font-hand); font-size: 2.4rem; color: var(--rose); line-height: 1.15; margin: 0; }
+    .desktop-card.note .note-sign { font-family: var(--font-hand); font-size: 1.2rem; color: var(--ink); margin-top: 1rem; }
+
+    /* Bottom note */
+    .bottom-note {
+      display: flex; align-items: center; justify-content: space-between; gap: 2rem;
+      padding: 6vh 6vw;
+      border-top: 1px solid rgba(184,60,60,0.25);
+    }
+    .bottom-note .pixel-small { font-size: 3rem; color: var(--rose); }
+    .bottom-note p { font-size: 1.15rem; color: var(--muted); margin: 0; }
+    .bottom-note p em { font-family: var(--font-hand); font-size: 1.8rem; color: var(--rose); display: block; margin-top: 0.3rem; font-style: normal; }
+    .bottom-note .mono { color: var(--muted); font-size: 0.6rem; text-align: right; }
+
+    /* Footer */
+    footer {
+      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+      padding: 1.6rem 6vw;
+      border-top: 1px solid rgba(184,60,60,0.2);
+      flex-wrap: wrap;
+    }
+    footer .brand { font-size: 2rem; }
+    footer span, footer button {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+    .footer-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .footer-link {
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      color: var(--muted);
+      transition: color 0.15s;
+    }
+    .footer-link:hover { color: var(--rose); }
+
+    /* Dialogs */
+    dialog {
+      border: 2px solid var(--rose);
+      box-shadow: 10px 10px 0 var(--shadow);
+      padding: 0;
+      width: min(720px, 92vw);
+      max-width: min(720px, 92vw);
+      max-height: 86vh;
+      background: var(--bg);
+      color: var(--ink);
+      margin: auto;
+    }
+    dialog::backdrop { background: rgba(61,43,43,0.35); backdrop-filter: blur(2px); }
+    dialog .titlebar {
+      display: flex; justify-content: space-between; align-items: center;
+      background: var(--rose); color: #fff;
+      padding: 0.55rem 0.8rem;
+      font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.06em;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    dialog .close {
+      background: none; border: none; color: #fff; font-size: 1.3rem; line-height: 1; cursor: pointer;
+    }
+    .workspace-content, .form-content, .reminder-body { padding: 1.4rem; }
+    .workspace-heading {
+      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+      margin: 0.6rem 0 1rem;
+      flex-wrap: wrap;
+    }
+    .workspace-heading h2 { font-family: var(--font-display); font-size: 2rem; color: var(--rose); margin: 0; }
+    .save-note { font-size: 0.78rem; color: var(--muted); margin: 0.4rem 0; }
+
+    .entry {
+      background: #fff; border: 1px solid rgba(184,60,60,0.35);
+      padding: 1rem; margin-bottom: 0.8rem;
+      display: flex; gap: 1rem; align-items: flex-start;
+    }
+    .entry .entry-meta { min-width: 110px; font-family: var(--font-mono); font-size: 0.55rem; color: var(--muted); text-transform: uppercase; }
+    .entry .entry-body { flex: 1; }
+    .entry h4 { margin: 0 0 0.3rem; font-family: var(--font-display); font-size: 1.3rem; color: var(--rose); }
+    .entry p { margin: 0; color: var(--ink); font-size: 0.92rem; white-space: pre-wrap; }
+    .entry img { margin-top: 0.6rem; max-width: 180px; max-height: 140px; object-fit: cover; border: 1px solid var(--rose-light); }
+    .entry-actions {
+      display: flex; gap: 0.4rem; flex-wrap: wrap;
+    }
+    .entry-actions button {
+      font-family: var(--font-mono); font-size: 0.55rem; text-transform: uppercase;
+      background: var(--bg-2); border: 1px solid var(--rose); color: var(--rose);
+      padding: 0.35rem 0.55rem; cursor: pointer;
+    }
+    .entry-actions button:hover { background: var(--rose); color: #fff; }
+
+    .form-content label { display: block; margin-bottom: 0.9rem; font-size: 0.78rem; color: var(--muted); }
+    .form-content label[hidden] { display: none !important; }
+    .form-content input, .form-content textarea {
+      display: block; width: 100%; margin-top: 0.35rem;
+      padding: 0.7rem; background: #fff; border: 1px solid rgba(184,60,60,0.35);
+      font-family: var(--font-body); font-size: 0.95rem; color: var(--ink);
+    }
+    .form-content input:focus, .form-content textarea:focus { outline: 2px solid var(--rose-light); }
+    .form-error { color: var(--rose); font-size: 0.8rem; margin: 0.5rem 0; }
+
+    .delete-actions { display: flex; gap: 0.8rem; justify-content: flex-end; margin-top: 1rem; }
+    .secondary {
+      background: transparent; color: var(--rose);
+      border: 1px solid var(--rose); padding: 0.7rem 1rem;
+      font-family: var(--font-mono); font-size: 0.65rem; text-transform: uppercase; cursor: pointer;
+    }
+
+    .reminder-body { text-align: center; }
+    .reminder-body .pixel-heart { font-size: 4rem; color: var(--rose); line-height: 1; }
+    .reminder-body h2 { font-family: var(--font-body); font-size: 1.7rem; font-weight: 600; color: var(--ink); margin: 0.8rem 0; }
+    .reminder-body .hand { font-size: 1.4rem; color: var(--rose); margin-bottom: 1.2rem; }
+
+    /* Responsive */
+    @media (max-width: 980px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-art { order: -1; min-height: 420px; }
+      .desktop-grid { grid-template-columns: repeat(2, 1fr); }
+      .desktop-card.wide { grid-column: span 2; }
+      .section-heading { flex-direction: column; align-items: flex-start; }
+      .section-heading > p { text-align: left; }
+    }
+    @media (max-width: 640px) {
+      header { flex-wrap: wrap; }
+      .online { display: none; }
+      .desktop-grid { grid-template-columns: 1fr; }
+      .desktop-card.wide { grid-column: span 1; }
+      .bottom-note { flex-direction: column; text-align: center; }
+      footer { flex-direction: column; text-align: center; gap: 0.6rem; }
+      .sticky { right: 0; width: 140px; }
+      .entry { flex-direction: column; }
+    }
+
+    .room-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-family: var(--font-mono);
+      font-size: 0.64rem;
+      color: var(--rose);
+      background: var(--cream);
+      border: 1px solid var(--rose);
+      padding: 0.3rem 0.65rem;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      box-shadow: 2px 2px 0 var(--shadow);
+      transition: transform 0.12s, box-shadow 0.12s;
+    }
+    .room-pill:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 3px 3px 0 var(--shadow);
+    }
+    .sync-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #4caf50;
+      margin-right: 0.35rem;
+    }
+    .sync-dot.syncing {
+      background: #ffb300;
+      animation: pulse 0.8s infinite;
+    }
+    .sync-dot.offline {
+      background: #9e9e9e;
+    }
+    .userid-badge {
+      font-family: var(--font-mono);
+      font-size: 0.54rem;
+      color: rgba(244, 240, 229, 0.55);
+      max-width: 240px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <a class="brand" href="#home"><span class="tiny-heart">♥</span> JUST US<span class="version">/ v.01</span></a>
+  <nav aria-label="Main navigation">
+    <a href="#collection">OUR LITTLE WORLD</a>
+    <button id="surprise" type="button">A LITTLE REMINDER ↗</button>
+    <button id="open-gdrive-dialog" class="room-pill" type="button" title="Connect Google Drive for automatic cross-device sync">
+      <span id="header-gdrive-label">☁ DRIVE SYNC</span>
+    </button>
+    <button id="open-share-dialog" class="room-pill" type="button" title="Export or share our little world with her">
+      <span>SHARE / EXPORT FOR HER ♡</span>
+    </button>
+  </nav>
+  <span class="online"><i></i> <span id="header-sync-text">BETTER TOGETHER</span></span>
+</header>
+
+<main id="home">
+  <div class="eyebrow">
+    <span>EST. THE DAY WE MET</span>
+    <span>A PLACE FOR YOU + ME</span>
+  </div>
+
+  <section class="hero">
+    <div class="hero-copy">
+      <p class="mono">// MY FAVORITE PERSON, MY FAVORITE PLACE.</p>
+      <h1>YOU.<br>ME.<br><span>EVERYTHING</span><br>IN BETWEEN<span class="cursor">_</span></h1>
+      <p class="intro">Not the whole internet. Just our little corner of it.<br>For the big moments, the tiny things, and all the<br class="desktop"> reasons I'd choose you again.</p>
+      <a class="primary" href="#collection">OPEN OUR LITTLE WORLD <span>↘</span></a>
+      <span class="hand hero-note">made with love. obviously.</span>
+    </div>
+    <div class="hero-art" aria-label="A love letter on our shared desktop">
+      <div class="floating-label">100% US. ZERO EXPLANATION NEEDED.</div>
+      <div class="love-window">
+        <div class="titlebar"><span>♡ LOVE_LETTER.TXT</span><span>− □ ×</span></div>
+        <div class="letter-preview">
+          <p class="mono">TO: MY FAVORITE HUMAN</p>
+          <div class="pixel-heart">♥</div>
+          <h2>Of all the tabs I've opened,<br>you're my favorite.</h2>
+          <p>Here's to collecting a life full of<br>"remember when?" with you.</p>
+          <span class="hand">always, your person</span>
+          <div class="letter-footer">ATTACHMENTS: ALL MY LOVE <span>↵</span></div>
+        </div>
+      </div>
+      <div class="sticky">
+        <span class="tape"></span>
+        <p>Little reminder:<br>you + me =<br>my favorite thing.</p>
+        <span>♡</span>
+      </div>
+      <div class="desktop-file">
+        <span id="folder-art"></span>
+        <small>our_forever.zip</small>
+      </div>
+      <div class="art-spark">✦</div>
+    </div>
+  </section>
+
+  <div class="ticker">
+    <span>SMALL MOMENTS. BIG FEELINGS.</span><b>✦</b>
+    <span>SAME TWO PEOPLE. A MILLION MEMORIES.</span><b>✦</b>
+    <span>MY FAVORITE KIND OF FOREVER.</span><b>✦</b>
+  </div>
+
+  <section id="collection">
+    <div class="section-heading">
+      <div>
+        <p class="mono">[ OUR SHARED DESKTOP ]</p>
+        <h2>A little bit of <em>us.</em></h2>
+      </div>
+      <p>Everything I want to keep.<br>Everyone I want to keep it with: you.</p>
+    </div>
+    <div class="desktop-grid" id="section-grid">
+      <div class="desktop-card" style="background: #f0dcdc;" data-sec-id="memories">
+        <div class="card-header"><span>[ 01 : MEMORIES.JPG ]</span><span>2 ITEMS →</span></div>
+        <div class="card-body">
+          <div class="card-icon">✇</div>
+          <h3>OUR MEMORIES</h3>
+          <p>The moments I'd live twice.</p>
+        </div>
+        <div class="card-footer"><span>OPEN THE ALBUM</span><span>→</span></div>
+      </div>
+      <div class="desktop-card" style="background: #efe7d0;" data-sec-id="jokes">
+        <div class="card-header"><span>[ 02 : INSIDE_JOKES.EXE ]</span><span>2 ITEMS →</span></div>
+        <div class="card-body">
+          <div class="card-icon">☺</div>
+          <h3>ONLY WE GET IT.</h3>
+          <p>Absolutely no context required.</p>
+        </div>
+        <div class="card-footer"><span>LET ME LAUGH</span><span>→</span></div>
+      </div>
+      <div class="desktop-card" style="background: #f4ede2;" data-sec-id="letters">
+        <div class="card-header"><span>[ 03 : LOVE_LETTERS.TXT ]</span><span>2 ITEMS →</span></div>
+        <div class="card-body">
+          <div class="card-icon">✉</div>
+          <h3>WORDS FOR YOU</h3>
+          <p>Some things deserve more than a text.</p>
+        </div>
+        <div class="card-footer"><span>READ THE LETTERS</span><span>→</span></div>
+      </div>
+      <div class="desktop-card" style="background: #f0dcdc;" data-sec-id="soundtrack">
+        <div class="card-header"><span>[ 04 : OUR_SOUNDTRACK.MP3 ]</span><span>2 ITEMS →</span></div>
+        <div class="card-body">
+          <div class="card-icon">♫</div>
+          <h3>SOUNDS LIKE US</h3>
+          <p>Every good love story has a soundtrack.</p>
+        </div>
+        <div class="card-footer"><span>OPEN THE PLAYLIST</span><span>→</span></div>
+      </div>
+      <div class="desktop-card wide" style="background: #efe7d0;" data-sec-id="someday">
+        <div class="card-header"><span>[ 05 : SOMEDAY_WITH_YOU.LST ]</span><span>2 ITEMS →</span></div>
+        <div class="card-body">
+          <div class="card-icon">✛</div>
+          <h3>OUR SOMEDAY LIST</h3>
+          <p>Big dreams. Small adventures. Together.</p>
+        </div>
+        <div class="card-footer"><span>MAKE SOME PLANS</span><span>→</span></div>
+      </div>
+      <div class="desktop-card note">
+        <div class="note-label">NOTE TO SELF:</div>
+        <p>Collect moments.<br>Keep the silly things.<br>Love them loudly.</p>
+        <div class="note-sign">especially the silly things. ♡</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bottom-note">
+    <span class="pixel-small">♥</span>
+    <p>There are a million places we could be.<br><em>I like being here, with you.</em></p>
+    <span class="mono">END OF PAGE.<br>NOT EVEN CLOSE TO THE END OF US.</span>
+  </section>
+</main>
+
+<footer>
+  <a class="brand" href="#home">JUST US.</a>
+  <span>HANDMADE FOR MY FAVORITE HUMAN.</span>
+  <div class="footer-meta">
+    <span><i id="sync-dot" class="sync-dot"></i><span id="save-indicator">LIVE SYNC ACTIVE ♡</span></span>
+    <button id="footer-gdrive-btn" class="footer-link" type="button" title="Configure Google Drive Cloud Storage">GOOGLE DRIVE SYNC ☁</button>
+    <button id="footer-share-btn" class="footer-link" type="button" title="Export website or share link">EXPORT FOR WEB / SHARE ↗</button>
+    <span id="user-id-display" style="font-size:0.5rem; opacity:0.55;" title="Shared Space Session ID"></span>
+  </div>
+</footer>
+
+<dialog id="workspace">
+  <div class="titlebar"><span id="workspace-title"></span><button class="close" aria-label="Close section">×</button></div>
+  <div class="workspace-content">
+    <p class="mono" id="workspace-subtitle"></p>
+    <div class="workspace-heading">
+      <h2 id="workspace-heading"></h2>
+      <button class="primary" id="add-entry" type="button">+ ADD SOMETHING</button>
+    </div>
+    <p class="save-note">Make it your order: use Move Up or Move Down on any item. Everything we add here is saved for both of us.</p>
+    <p id="entry-status" class="save-note" style="color: var(--rose); font-weight: 500;" role="status"></p>
+    <div id="entries"></div>
+  </div>
+</dialog>
+
+<dialog id="editor">
+  <form id="entry-form">
+    <div class="titlebar"><span id="editor-title">A NEW LITTLE THING</span><button type="button" class="close" aria-label="Close editor">×</button></div>
+    <div class="form-content">
+      <p class="mono">// ANOTHER PIECE OF OUR STORY</p>
+      <label>Your name<input name="author" maxlength="50" placeholder="Me / you / your nickname" required></label>
+      <label id="title-label">Title<input name="title" maxlength="120" placeholder="Give this little moment a name" required></label>
+      <label id="body-label">A little note<textarea name="body" maxlength="5000" rows="4" placeholder="The things I want you to remember…"></textarea></label>
+      <label id="photo-label" hidden>Photo<input name="photo" type="file" accept="image/jpeg,image/png,image/webp,image/gif"><small>Choose a photo up to 8 MB. Automatically saved to our album.</small></label>
+      <label id="url-label" hidden>Song link<input name="url" type="url" placeholder="https://open.spotify.com/track/…"></label>
+      <p class="form-error" id="form-error" role="alert"></p>
+      <button class="primary" type="submit">ADD TO OUR WORLD ♡</button>
+      <p class="save-note">Saved automatically to our shared space (<strong id="editor-room-name">JUST-US-01</strong>).</p>
+    </div>
+  </form>
+</dialog>
+
+<dialog id="room-dialog" aria-labelledby="room-heading">
+  <form id="room-form">
+    <div class="titlebar"><span>SHARE_AND_EXPORT_WEB.EXE</span><button type="button" class="close" aria-label="Close share window">×</button></div>
+    <div class="form-content">
+      <p class="mono">// SEND THIS TO YOUR FAVORITE PERSON</p>
+      <h2 id="room-heading" style="font-family: var(--font-display); font-size: 2rem; color: var(--rose); margin: 0 0 0.4rem;">Publish or Share With Her</h2>
+      <p class="save-note">Add your memories, letters, photos, and songs first—then use any option below to put it on the web for her.</p>
+
+      <div style="background: #eef7ee; border: 1px solid #4caf50; padding: 0.9rem 1rem; margin: 0.9rem 0; display:flex; justify-content:space-between; align-items:center; gap:0.8rem; flex-wrap:wrap;">
+        <div style="flex:1; min-width: 210px;">
+          <p class="mono" style="font-size: 0.62rem; color: #2e7d32; font-weight: 700; margin: 0 0 0.2rem;">☁ GOOGLE DRIVE CROSS-DEVICE SYNC: <span id="share-gdrive-status">NOT CONNECTED</span></p>
+          <p class="save-note" style="margin: 0; font-size: 0.72rem;">Connect your Google Drive once BEFORE downloading <code>index.html</code> so both of your phones/laptops automatically save &amp; load from your Drive!</p>
+        </div>
+        <button id="share-open-gdrive-btn" class="secondary" type="button" style="border-color:#2e7d32; color:#2e7d32; background:#fff;">SETUP GOOGLE DRIVE ☁</button>
+      </div>
+
+      <div style="background: var(--cream); border: 1px solid var(--rose); padding: 1rem; margin: 0.9rem 0;">
+        <p class="mono" style="font-size: 0.62rem; color: var(--rose); font-weight: 700; margin: 0 0 0.35rem;">OPTION 1 : PUBLISH AS A FREE PUBLIC WEBSITE (RECOMMENDED)</p>
+        <p class="save-note" style="margin: 0 0 0.7rem;">Downloads a complete, single-file <code>index.html</code> with all your current memories, photos, <strong>and your Google Drive Sync URL</strong> baked inside. Drag and drop that file onto <strong>Cloudflare Pages</strong>, <strong>GitHub Pages</strong>, or <strong>Netlify Drop</strong>!</p>
+        <button id="download-baked-html" class="primary" type="button" style="width:100%; justify-content:center;">DOWNLOAD READY-TO-HOST index.html ↘</button>
+      </div>
+
+      <div style="background: #fff; border: 1px solid rgba(184,60,60,0.4); padding: 1rem; margin: 0.9rem 0;">
+        <p class="mono" style="font-size: 0.62rem; color: var(--rose); font-weight: 700; margin: 0 0 0.35rem;">OPTION 2 : INSTANT SHARE LINK (NO HOSTING NEEDED)</p>
+        <p class="save-note" style="margin: 0 0 0.7rem;">Copies your current web URL with your shared room code (<strong id="share-modal-room-badge">JUST-US-01</strong>), your Google Drive Sync connection, and a snapshot of your notes embedded directly in the link.</p>
+        <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+          <button id="copy-room-link" class="primary" type="button" style="flex:1; justify-content:center;">COPY WEB LINK FOR HER ♡</button>
+          <button id="native-share-btn" class="secondary" type="button">SHARE ↗</button>
+        </div>
+      </div>
+
+      <details style="margin-top: 0.9rem; border-top: 1px dashed rgba(184,60,60,0.3); padding-top: 0.8rem;">
+        <summary class="mono" style="font-size: 0.62rem; color: var(--muted); cursor: pointer;">Shared Secret Room Code &amp; JSON Backups</summary>
+        <div style="margin-top: 0.8rem;">
+          <label style="margin-bottom: 0.6rem;">Shared Live Room Code (both devices with this code stay in sync)
+            <input id="room-code-input" name="roomCode" maxlength="40" placeholder="e.g. JUST-US-01" required>
+          </label>
+          <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top: 0.6rem;">
+            <button class="secondary" type="submit">SET ROOM CODE</button>
+            <button id="export-json-btn" class="secondary" type="button">EXPORT .JSON</button>
+            <button id="import-json-btn" class="secondary" type="button">IMPORT .JSON</button>
+            <button id="open-reset-dialog" class="secondary" type="button">RESTORE EXAMPLES</button>
+            <input id="import-json-input" type="file" accept="application/json,.json" hidden>
+          </div>
+        </div>
+      </details>
+
+      <p id="room-status-msg" class="save-note" style="color: var(--rose); font-weight: 600; margin-top: 0.7rem;"></p>
+    </div>
+  </form>
+</dialog>
+
+<dialog id="gdrive-dialog" aria-labelledby="gdrive-heading">
+  <form id="gdrive-form">
+    <div class="titlebar"><span>GOOGLE_DRIVE_SYNC.EXE</span><button type="button" class="close" aria-label="Close Google Drive setup">×</button></div>
+    <div class="form-content">
+      <p class="mono">// SAVE &amp; SYNC EVERYTHING IN YOUR OWN GOOGLE DRIVE</p>
+      <h2 id="gdrive-heading" style="font-family: var(--font-display); font-size: 2rem; color: var(--rose); margin: 0 0 0.4rem;">Connect Google Drive Storage</h2>
+      <p class="save-note">Store all your memories, photos, love letters, and songs inside a single file (<code>our_little_world_data.json</code>) in your personal Google Drive so both you and her always see the exact same data on any device—even on free static hosts like GitHub Pages or Cloudflare!</p>
+
+      <div style="background: var(--cream); border: 1px solid var(--rose); padding: 0.95rem; margin: 0.85rem 0;">
+        <p class="mono" style="font-size: 0.62rem; color: var(--rose); font-weight: 700; margin: 0 0 0.45rem;">STEP 1 : CREATE YOUR FREE GOOGLE DRIVE BRIDGE (60 SECONDS)</p>
+        <ol style="font-size: 0.78rem; color: var(--ink); margin: 0 0 0.75rem; padding-left: 1.2rem; line-height: 1.55;">
+          <li>Open <a href="https://script.google.com/home/start" target="_blank" rel="noopener" style="color:var(--rose); font-weight:600; text-decoration:underline;">script.google.com</a> and click <strong>New Project</strong>.</li>
+          <li>Click the button below to copy the 20-line Drive storage script, paste it into the editor (replacing any code there), and click <strong>Save (💾)</strong>.</li>
+          <li>Click <strong>Deploy &rarr; New deployment</strong> (top right).</li>
+          <li>Select type: <strong>Web app</strong>. Set <em>Execute as</em> to <strong>Me</strong>, and set <em>Who has access</em> to <strong>Anyone</strong>.</li>
+          <li>Click <strong>Deploy</strong>, authorize Drive access, and copy the <strong>Web app URL</strong> (ends in <code>/exec</code>).</li>
+        </ol>
+        <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+          <button id="copy-gas-code" class="secondary" type="button" style="background:#fff;">📋 COPY GOOGLE DRIVE SCRIPT</button>
+          <button id="toggle-gas-preview" class="secondary" type="button" style="background:#fff;">VIEW SCRIPT CODE</button>
+        </div>
+        <pre id="gas-code-preview" hidden style="margin-top:0.7rem; padding:0.7rem; background:#2d2424; color:#f4f0e5; font-family:var(--font-mono); font-size:0.58rem; overflow-x:auto; text-transform:none; letter-spacing:0; line-height:1.45;"></pre>
+      </div>
+
+      <div style="background: #fff; border: 1px solid rgba(184,60,60,0.4); padding: 0.95rem; margin: 0.85rem 0;">
+        <p class="mono" style="font-size: 0.62rem; color: var(--rose); font-weight: 700; margin: 0 0 0.4rem;">STEP 2 : PASTE YOUR GOOGLE SCRIPT WEB APP URL</p>
+        <label style="margin-bottom:0.6rem;">Google Apps Script Web App URL
+          <input id="gdrive-url-input" name="gdriveUrl" type="url" placeholder="https://script.google.com/macros/s/.../exec">
+        </label>
+        <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+          <button id="save-gdrive-btn" class="primary" type="submit" style="flex:1; justify-content:center;">TEST &amp; CONNECT DRIVE ♡</button>
+          <button id="pull-gdrive-btn" class="secondary" type="button" title="Fetch latest entries from Google Drive now">PULL FROM DRIVE ↻</button>
+          <button id="disconnect-gdrive-btn" class="secondary" type="button">DISCONNECT</button>
+        </div>
+      </div>
+
+      <p id="gdrive-status-msg" class="save-note" style="color: var(--rose); font-weight: 600; margin-top: 0.6rem;"></p>
+    </div>
+  </form>
+</dialog>
+
+<dialog id="delete-confirmation" aria-labelledby="delete-heading" aria-describedby="delete-description">
+  <div class="titlebar"><span>DELETE_ENTRY.TXT</span><button class="close" aria-label="Cancel deletion">×</button></div>
+  <div class="form-content">
+    <h2 id="delete-heading" style="font-family: var(--font-display); font-size: 1.8rem; color: var(--rose); margin: 0 0 0.5rem;">Delete this little thing?</h2>
+    <p id="delete-item-title" style="font-weight: 600;"></p>
+    <p id="delete-description" class="save-note">This permanently removes the item from your saved collection.</p>
+    <div class="delete-actions">
+      <button id="cancel-delete" class="secondary" type="button" autofocus>KEEP IT</button>
+      <button id="confirm-delete" class="primary" type="button">YES, DELETE</button>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="reset-confirmation" aria-labelledby="reset-heading">
+  <div class="titlebar"><span>RESET_COLLECTION.EXE</span><button class="close" aria-label="Cancel reset">×</button></div>
+  <div class="form-content">
+    <h2 id="reset-heading" style="font-family: var(--font-display); font-size: 1.8rem; color: var(--rose); margin: 0 0 0.5rem;">Restore default examples?</h2>
+    <p class="save-note">This will replace any custom entries you've added or reordered with the original starter examples.</p>
+    <div class="delete-actions">
+      <button id="cancel-reset" class="secondary" type="button">KEEP MY DATA</button>
+      <button id="confirm-reset" class="primary" type="button">RESTORE DEFAULTS</button>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="reminder">
+  <div class="titlebar"><span>A_LITTLE_REMINDER.TXT</span><button class="close" aria-label="Close reminder">×</button></div>
+  <div class="reminder-body">
+    <span class="pixel-heart">♥</span>
+    <h2 id="reminder-text"></h2>
+    <p class="hand">in case you forgot today.</p>
+    <button class="primary" id="another-reminder" type="button">ONE MORE, PLEASE ↻</button>
+  </div>
+</dialog>
+
+<script id="baked-initial-state" type="application/json">null</script>
+
+<script>
+  // Core Synchronous Application Logic + Google Drive Cross-Device Sync Engine
+  window.JustUsApp = (function () {
+    const STORAGE_PREFIX = 'just_us_sections_room_';
+    const ROOM_STORAGE_KEY = 'just_us_active_room_code';
+    const GDRIVE_URL_STORAGE_KEY = 'just_us_gdrive_webapp_url';
+
+    const GOOGLE_APPS_SCRIPT_TEMPLATE = [
+      "// Just Us — Google Drive Storage Bridge (Paste at script.google.com)",
+      "const FILE_NAME = 'our_little_world_data.json';",
+      "",
+      "function getOrCreateFile() {",
+      "  const files = DriveApp.getFilesByName(FILE_NAME);",
+      "  if (files.hasNext()) return files.next();",
+      "  return DriveApp.createFile(FILE_NAME, JSON.stringify({ sections: null, updatedAt: 0 }), MimeType.PLAIN_TEXT);",
+      "}",
+      "",
+      "function doGet(e) {",
+      "  const content = getOrCreateFile().getBlob().getDataAsString() || '{}';",
+      "  return ContentService.createTextOutput(content).setMimeType(ContentService.MimeType.JSON);",
+      "}",
+      "",
+      "function doPost(e) {",
+      "  const body = (e && e.postData && e.postData.contents) ? e.postData.contents : '{}';",
+      "  getOrCreateFile().setContent(body);",
+      "  return ContentService.createTextOutput(JSON.stringify({ ok: true, savedAt: Date.now() }))",
+      "    .setMimeType(ContentService.MimeType.JSON);",
+      "}"
+    ].join('\n');
+
+    const canonicalSections = [
+      {
+        id: 'memories',
+        filename: '01 : MEMORIES.JPG',
+        title: 'OUR MEMORIES',
+        subtitle: "The moments I'd live twice.",
+        cta: 'OPEN THE ALBUM',
+        icon: '✇',
+        color: '#f0dcdc',
+        type: 'photo',
+        heading: 'OUR MEMORIES',
+        entries: [
+          { author: 'Me', title: 'That rainy afternoon', body: "We didn't do much. That's why I remember it so much.", date: '14/02/2025' },
+          { author: 'You', title: 'The coffee shop', body: 'You laughed at my terrible joke. I still have the receipt.', date: '21/02/2025' }
+        ]
+      },
+      {
+        id: 'jokes',
+        filename: '02 : INSIDE_JOKES.EXE',
+        title: 'ONLY WE GET IT.',
+        subtitle: 'Absolutely no context required.',
+        cta: 'LET ME LAUGH',
+        icon: '☺',
+        color: '#efe7d0',
+        type: 'text',
+        heading: 'INSIDE JOKES',
+        entries: [
+          { author: 'Us', title: 'The potato incident', body: "No one else will ever understand. That's the point.", date: '03/03/2025' },
+          { author: 'You', title: 'Code word: spaghetti', body: 'Still makes me smile in public places.', date: '10/03/2025' }
+        ]
+      },
+      {
+        id: 'letters',
+        filename: '03 : LOVE_LETTERS.TXT',
+        title: 'WORDS FOR YOU',
+        subtitle: 'Some things deserve more than a text.',
+        cta: 'READ THE LETTERS',
+        icon: '✉',
+        color: '#f4ede2',
+        type: 'text',
+        heading: 'LETTERS FOR YOU',
+        entries: [
+          { author: 'Me', title: 'Tuesday, 2am', body: 'I was thinking about you. I am always thinking about you.', date: '19/03/2025' },
+          { author: 'You', title: 'A note I kept', body: 'I read it when I miss you. Which is often.', date: '25/03/2025' }
+        ]
+      },
+      {
+        id: 'soundtrack',
+        filename: '04 : OUR_SOUNDTRACK.MP3',
+        title: 'SOUNDS LIKE US',
+        subtitle: 'Every good love story has a soundtrack.',
+        cta: 'OPEN THE PLAYLIST',
+        icon: '♫',
+        color: '#f0dcdc',
+        type: 'song',
+        heading: 'OUR SOUNDTRACK',
+        entries: [
+          { author: 'Me', title: 'That one song', body: 'The one that was playing when everything made sense.', url: 'https://open.spotify.com', date: '01/04/2025' },
+          { author: 'You', title: 'Your pick', body: 'You said it reminded you of me. Now it reminds me of you.', url: 'https://open.spotify.com', date: '05/04/2025' }
+        ]
+      },
+      {
+        id: 'someday',
+        filename: '05 : SOMEDAY_WITH_YOU.LST',
+        title: 'OUR SOMEDAY LIST',
+        subtitle: 'Big dreams. Small adventures. Together.',
+        cta: 'MAKE SOME PLANS',
+        icon: '✛',
+        color: '#efe7d0',
+        type: 'list',
+        heading: 'OUR SOMEDAY LIST',
+        entries: [
+          { author: 'Us', title: 'Road trip with no map', body: 'Windows down, bad snacks, your hand in mine.', date: '12/04/2025' },
+          { author: 'Me', title: 'Learn something silly together', body: 'Pottery? Salsa? Whatever makes us laugh.', date: '18/04/2025' }
+        ]
+      }
+    ];
+
+    const reminders = [
+      "You are my favorite notification.",
+      "I choose you. And I'll keep choosing you.",
+      "You make ordinary days feel like gifts.",
+      "You're the best part of my today.",
+      "I'm proud of you, even from afar.",
+      "You are loved more than you know.",
+      "Home isn't a place. It's you.",
+      "I'm saving a hug with your name on it."
+    ];
+
+    function getBakedStateObject() {
+      try {
+        const bakedEl = document.getElementById('baked-initial-state');
+        if (bakedEl && bakedEl.textContent) {
+          const parsed = JSON.parse(bakedEl.textContent);
+          if (parsed && typeof parsed === 'object') return parsed;
+        }
+      } catch (e) {}
+      return null;
+    }
+
+    function getBakedDefaults() {
+      const parsed = getBakedStateObject();
+      if (parsed && Array.isArray(parsed.sections) && parsed.sections.length === 5) {
+        return JSON.parse(JSON.stringify(parsed.sections));
+      }
+      return JSON.parse(JSON.stringify(canonicalSections));
+    }
+
+    // Guarantees all 5 sections are always present with their proper metadata
+    function mergeWithCanonicalSections(candidateList) {
+      const base = getBakedDefaults();
+      if (!Array.isArray(candidateList)) return base;
+      return base.map(canon => {
+        const match = candidateList.find(item => item && (item.id === canon.id || item.filename === canon.filename));
+        if (match && Array.isArray(match.entries)) {
+          return Object.assign({}, canon, { entries: match.entries });
+        }
+        return canon;
+      });
+    }
+
+    function sanitizeRoomCode(raw) {
+      const cleaned = String(raw || '')
+        .trim()
+        .toUpperCase()
+        .replace(/[^A-Z0-9_-]/g, '-')
+        .replace(/-+/g, '-')
+        .replace(/^-|-$/g, '');
+      return cleaned || 'JUST-US-01';
+    }
+
+    function getInitialRoomCode() {
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const urlRoom = params.get('room');
+        if (urlRoom) {
+          const code = sanitizeRoomCode(urlRoom);
+          localStorage.setItem(ROOM_STORAGE_KEY, code);
+          return code;
+        }
+        const baked = getBakedStateObject();
+        if (baked && baked.roomCode) {
+          return sanitizeRoomCode(baked.roomCode);
+        }
+        const savedRoom = localStorage.getItem(ROOM_STORAGE_KEY);
+        if (savedRoom) return sanitizeRoomCode(savedRoom);
+      } catch (e) {}
+      return 'JUST-US-01';
+    }
+
+    function getInitialGDriveUrl() {
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const urlGDrive = params.get('gdrive');
+        if (urlGDrive && urlGDrive.startsWith('https://script.google.com/')) {
+          localStorage.setItem(GDRIVE_URL_STORAGE_KEY, urlGDrive.trim());
+          return urlGDrive.trim();
+        }
+        const baked = getBakedStateObject();
+        if (baked && baked.gdriveUrl && String(baked.gdriveUrl).startsWith('https://script.google.com/')) {
+          return String(baked.gdriveUrl).trim();
+        }
+        const savedUrl = localStorage.getItem(GDRIVE_URL_STORAGE_KEY);
+        if (savedUrl && savedUrl.startsWith('https://script.google.com/')) {
+          return savedUrl.trim();
+        }
+      } catch (e) {}
+      return '';
+    }
+
+    function importSnapshotFromUrlHash(code) {
+      try {
+        const hash = window.location.hash || '';
+        if (!hash.startsWith('#world=')) return null;
+        const encoded = hash.slice('#world='.length);
+        const jsonStr = decodeURIComponent(escape(atob(encoded)));
+        const parsed = JSON.parse(jsonStr);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          const merged = mergeWithCanonicalSections(parsed);
+          localStorage.setItem(STORAGE_PREFIX + code, JSON.stringify(merged));
+          history.replaceState(null, '', window.location.pathname + window.location.search);
+          return merged;
+        }
+      } catch (e) {
+        console.warn('Could not decode URL snapshot:', e);
+      }
+      return null;
+    }
+
+    function loadSectionsFromStorage(code) {
+      try {
+        const raw = localStorage.getItem(STORAGE_PREFIX + code) || localStorage.getItem('just_us_sections_v1');
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            return mergeWithCanonicalSections(parsed);
+          }
+        }
+      } catch (err) {
+        console.warn('Could not read saved sections from storage:', err);
+      }
+      return mergeWithCanonicalSections(null);
+    }
+
+    let roomCode = getInitialRoomCode();
+    let gdriveUrl = getInitialGDriveUrl();
+    let sections = importSnapshotFromUrlHash(roomCode) || loadSectionsFromStorage(roomCode);
+    let currentSection = null;
+    let pendingDelete = null;
+    let cloudPushCallback = null;
+    let roomChangeCallback = null;
+    let lastLocalSaveTime = 0;
+
+    function saveToLocalOnly(data, code) {
+      const targetCode = code || roomCode;
+      try {
+        localStorage.setItem(STORAGE_PREFIX + targetCode, JSON.stringify(data));
+        return true;
+      } catch (err) {
+        console.error('Local storage quota exceeded or unavailable:', err);
+        return false;
+      }
+    }
+
+    function setSyncBannerStatus(state, mainText) {
+      const dot = document.getElementById('sync-dot');
+      const indicator = document.getElementById('save-indicator');
+      if (dot) {
+        dot.className = 'sync-dot' + (state === 'syncing' ? ' syncing' : state === 'offline' ? ' offline' : '');
+      }
+      if (indicator && mainText) indicator.textContent = mainText;
+    }
+
+    function updateGDriveIndicators() {
+      const headerLabel = document.getElementById('header-gdrive-label');
+      const shareStatus = document.getElementById('share-gdrive-status');
+      const urlInput = document.getElementById('gdrive-url-input');
+      const connected = Boolean(gdriveUrl && gdriveUrl.startsWith('https://script.google.com/'));
+      if (headerLabel) {
+        headerLabel.textContent = connected ? '☁ DRIVE CONNECTED ✓' : '☁ DRIVE SYNC';
+      }
+      if (shareStatus) {
+        shareStatus.textContent = connected ? 'CONNECTED & ACTIVE ✓' : 'NOT CONNECTED';
+        shareStatus.style.color = connected ? '#2e7d32' : '#b83c3c';
+      }
+      if (urlInput && document.activeElement !== urlInput) {
+        urlInput.value = gdriveUrl || '';
+      }
+    }
+
+    function updateRoomLabels() {
+      const editorRoom = document.getElementById('editor-room-name');
+      const input = document.getElementById('room-code-input');
+      const badge = document.getElementById('share-modal-room-badge');
+      if (editorRoom) editorRoom.textContent = roomCode;
+      if (input) input.value = roomCode;
+      if (badge) badge.textContent = roomCode;
+      updateGDriveIndicators();
+    }
+
+    // Google Drive Push & Pull Operations (Uses text/plain to bypass CORS preflight issues on Apps Script)
+    async function pushToGoogleDrive(dataToSave) {
+      if (!gdriveUrl || !gdriveUrl.startsWith('https://script.google.com/')) return false;
+      try {
+        setSyncBannerStatus('syncing', 'SAVING TO GOOGLE DRIVE...');
+        const payload = {
+          app: 'Just Us — Our Little World',
+          roomCode: roomCode,
+          updatedAt: Date.now(),
+          sections: mergeWithCanonicalSections(dataToSave || sections)
+        };
+        const res = await fetch(gdriveUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload)
+        });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        setSyncBannerStatus('online', 'GOOGLE DRIVE SYNCED ♡');
+        return true;
+      } catch (err) {
+        console.warn('Google Drive push warning:', err);
+        setSyncBannerStatus('offline', 'SAVED LOCALLY (DRIVE OFFLINE)');
+        return false;
+      }
+    }
+
+    async function pullFromGoogleDrive(silent = true) {
+      if (!gdriveUrl || !gdriveUrl.startsWith('https://script.google.com/')) return false;
+      // Avoid overwriting immediate local edits within 4 seconds
+      if (silent && Date.now() - lastLocalSaveTime < 4000) return false;
+      try {
+        if (!silent) setSyncBannerStatus('syncing', 'CHECKING GOOGLE DRIVE...');
+        const sep = gdriveUrl.includes('?') ? '&' : '?';
+        const res = await fetch(`${gdriveUrl}${sep}t=${Date.now()}`, {
+          method: 'GET',
+          redirect: 'follow'
+        });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const text = await res.text();
+        if (!text) return false;
+        const parsed = JSON.parse(text);
+        const remoteList = Array.isArray(parsed) ? parsed : (parsed && Array.isArray(parsed.sections) ? parsed.sections : null);
+        if (remoteList && remoteList.length > 0) {
+          sections = mergeWithCanonicalSections(remoteList);
+          saveToLocalOnly(sections, roomCode);
+          renderGrid();
+          if (currentSection) {
+            const updatedSec = sections.find(s => s.id === currentSection.id);
+            if (updatedSec) {
+              currentSection = updatedSec;
+              renderEntries();
+            }
+          }
+          setSyncBannerStatus('online', 'GOOGLE DRIVE SYNCED ♡');
+          return true;
+        } else {
+          // Drive file is brand new/empty -> seed it with our current sections!
+          await pushToGoogleDrive(sections);
+          return true;
+        }
+      } catch (err) {
+        if (!silent) {
+          console.warn('Google Drive pull failed:', err);
+          setSyncBannerStatus('offline', 'DRIVE CONNECTION FAILED');
+        }
+        return false;
+      }
+    }
+
+    function saveSections() {
+      lastLocalSaveTime = Date.now();
+      sections = mergeWithCanonicalSections(sections);
+      const localOk = saveToLocalOnly(sections, roomCode);
+      renderGrid();
+
+      if (gdriveUrl && gdriveUrl.startsWith('https://script.google.com/')) {
+        pushToGoogleDrive(sections);
+      }
+      if (typeof cloudPushCallback === 'function') {
+        cloudPushCallback(sections, roomCode);
+      } else if (!gdriveUrl) {
+        setSyncBannerStatus('online', localOk ? 'SAVED IN OUR WORLD ♡' : 'STORAGE FULL');
+      }
+      return localOk;
+    }
+
+    function renderGrid() {
+      const grid = document.getElementById('section-grid');
+      if (!grid) return;
+      grid.innerHTML = '';
+      sections = mergeWithCanonicalSections(sections);
+
+      sections.forEach((sec, i) => {
+        const card = document.createElement('div');
+        card.className = 'desktop-card' + (i === 4 ? ' wide' : '');
+        card.style.background = sec.color;
+        const count = Array.isArray(sec.entries) ? sec.entries.length : 0;
+        card.innerHTML = `
+          <div class="card-header"><span>[ ${sec.filename} ]</span><span>${count} ${count === 1 ? 'ITEM' : 'ITEMS'} →</span></div>
+          <div class="card-body">
+            <div class="card-icon">${sec.icon}</div>
+            <h3>${sec.title}</h3>
+            <p>${sec.subtitle}</p>
+          </div>
+          <div class="card-footer"><span>${sec.cta}</span><span>→</span></div>
+        `;
+        card.addEventListener('click', () => openWorkspace(sec));
+        grid.appendChild(card);
+      });
+
+      const note = document.createElement('div');
+      note.className = 'desktop-card note';
+      note.innerHTML = `
+        <div class="note-label">NOTE TO SELF:</div>
+        <p>Collect moments.<br>Keep the silly things.<br>Love them loudly.</p>
+        <div class="note-sign">especially the silly things. ♡</div>
+      `;
+      grid.appendChild(note);
+    }
+
+    function openWorkspace(sec) {
+      currentSection = sections.find(s => s.id === sec.id) || sec;
+      const workspace = document.getElementById('workspace');
+      document.getElementById('workspace-title').textContent = currentSection.filename;
+      document.getElementById('workspace-subtitle').textContent = `[ ${currentSection.id.toUpperCase()}_WORKSPACE ]`;
+      document.getElementById('workspace-heading').textContent = currentSection.heading;
+      document.getElementById('entry-status').textContent = '';
+      renderEntries();
+      workspace.showModal();
+    }
+
+    function escapeHtml(str) {
+      const div = document.createElement('div');
+      div.textContent = str || '';
+      return div.innerHTML;
+    }
+
+    function renderEntries() {
+      const container = document.getElementById('entries');
+      if (!container || !currentSection) return;
+      container.innerHTML = '';
+
+      if (!currentSection.entries || currentSection.entries.length === 0) {
+        container.innerHTML = `<p class="save-note" style="padding: 1.5rem 0; text-align: center;">Nothing here yet. Click "+ ADD SOMETHING" to add your first memory! ♡</p>`;
+        return;
+      }
+
+      currentSection.entries.forEach((entry, idx) => {
+        const el = document.createElement('div');
+        el.className = 'entry';
+        let media = '';
+        if (entry.photo) {
+          media = `<img src="${entry.photo}" alt="${escapeHtml(entry.title)}">`;
+        } else if (entry.url) {
+          media = `<p class="mono" style="margin-top:0.5rem;"><a href="${escapeHtml(entry.url)}" target="_blank" rel="noopener" style="color:var(--rose);text-decoration:underline;">♫ OPEN LINK</a></p>`;
+        }
+
+        const displayDate = entry.date || 'Saved';
+
+        el.innerHTML = `
+          <div class="entry-meta">${escapeHtml(entry.author)}<br>${escapeHtml(displayDate)}</div>
+          <div class="entry-body">
+            <h4>${escapeHtml(entry.title)}</h4>
+            <p>${escapeHtml(entry.body)}</p>
+            ${media}
+          </div>
+          <div class="entry-actions">
+            <button type="button" data-action="up" data-idx="${idx}">Move Up</button>
+            <button type="button" data-action="down" data-idx="${idx}">Move Down</button>
+            <button type="button" data-action="delete" data-idx="${idx}">Delete</button>
+          </div>
+        `;
+        el.querySelectorAll('button').forEach(btn => {
+          btn.addEventListener('click', () => handleEntryAction(btn.dataset.action, parseInt(btn.dataset.idx, 10)));
+        });
+        container.appendChild(el);
+      });
+    }
+
+    function handleEntryAction(action, idx) {
+      const entries = currentSection.entries;
+      if (action === 'up' && idx > 0) {
+        [entries[idx], entries[idx - 1]] = [entries[idx - 1], entries[idx]];
+        saveSections();
+        renderEntries();
+        document.getElementById('entry-status').textContent = 'Order saved & synced to our world. ♡';
+      } else if (action === 'down' && idx < entries.length - 1) {
+        [entries[idx], entries[idx + 1]] = [entries[idx + 1], entries[idx]];
+        saveSections();
+        renderEntries();
+        document.getElementById('entry-status').textContent = 'Order saved & synced to our world. ♡';
+      } else if (action === 'delete') {
+        pendingDelete = idx;
+        document.getElementById('delete-item-title').textContent = entries[idx].title;
+        document.getElementById('delete-confirmation').showModal();
+      }
+    }
+
+    function confirmDelete() {
+      if (pendingDelete !== null && currentSection) {
+        currentSection.entries.splice(pendingDelete, 1);
+        pendingDelete = null;
+        saveSections();
+        renderEntries();
+        document.getElementById('entry-status').textContent = 'Deleted & synced across devices.';
+      }
+      document.getElementById('delete-confirmation').close();
+    }
+
+    function openEditor() {
+      const editor = document.getElementById('editor');
+      const form = document.getElementById('entry-form');
+      form.reset();
+      document.getElementById('form-error').textContent = '';
+      updateRoomLabels();
+
+      const type = currentSection.type;
+      document.getElementById('photo-label').hidden = type !== 'photo';
+      document.getElementById('url-label').hidden = type !== 'song';
+      document.getElementById('title-label').hidden = false;
+      document.getElementById('body-label').hidden = false;
+
+      editor.showModal();
+    }
+
+    async function onEntrySubmit(e) {
+      e.preventDefault();
+      const form = e.target;
+      const data = new FormData(form);
+      const type = currentSection.type;
+
+      const entry = {
+        author: (data.get('author') || '').trim() || 'Us',
+        title: (data.get('title') || '').trim(),
+        body: (data.get('body') || '').trim(),
+        date: new Date().toLocaleDateString()
+      };
+
+      if (!entry.title) {
+        document.getElementById('form-error').textContent = 'Please give this little moment a title.';
+        return;
+      }
+
+      if (type === 'photo') {
+        const file = data.get('photo');
+        if (file && file.size) {
+          if (file.size > 8 * 1024 * 1024) {
+            document.getElementById('form-error').textContent = 'Photo must be under 8 MB.';
+            return;
+          }
+          try {
+            entry.photo = await compressImageFile(file, 800, 0.75);
+          } catch (err) {
+            document.getElementById('form-error').textContent = 'Could not process photo. Please try another image.';
+            return;
+          }
+        }
+      }
+
+      if (type === 'song') {
+        const url = (data.get('url') || '').trim();
+        if (url) entry.url = url;
+      }
+
+      currentSection.entries.unshift(entry);
+      const saved = saveSections();
+      if (!saved) {
+        currentSection.entries.shift();
+        document.getElementById('form-error').textContent = 'Storage is full! Try removing an older photo or choosing a smaller image.';
+        return;
+      }
+
+      document.getElementById('editor').close();
+      renderEntries();
+      document.getElementById('entry-status').textContent = 'Added & synced to our world. ♡';
+    }
+
+    function compressImageFile(file, maxDimension = 800, quality = 0.75) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          const img = new Image();
+          img.onload = () => {
+            let width = img.width;
+            let height = img.height;
+            if (width > maxDimension || height > maxDimension) {
+              if (width > height) {
+                height = Math.round((height * maxDimension) / width);
+                width = maxDimension;
+              } else {
+                width = Math.round((width * maxDimension) / height);
+                height = maxDimension;
+              }
+            }
+            const canvas = document.createElement('canvas');
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, width, height);
+            resolve(canvas.toDataURL('image/jpeg', quality));
+          };
+          img.onerror = reject;
+          img.src = event.target.result;
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+
+    function showReminder() {
+      const text = reminders[Math.floor(Math.random() * reminders.length)];
+      document.getElementById('reminder-text').textContent = text;
+      const dialog = document.getElementById('reminder');
+      if (!dialog.open) dialog.showModal();
+    }
+
+    // Generates a complete standalone index.html with all current entries, photos, AND Google Drive URL baked in
+    function downloadBakedHtmlFile() {
+      const cloneDoc = document.documentElement.cloneNode(true);
+      cloneDoc.querySelectorAll('dialog').forEach(d => d.removeAttribute('open'));
+      const bakedScript = cloneDoc.querySelector('#baked-initial-state');
+      if (bakedScript) {
+        bakedScript.textContent = JSON.stringify({
+          roomCode: roomCode,
+          gdriveUrl: gdriveUrl || '',
+          bakedAt: new Date().toISOString(),
+          sections: mergeWithCanonicalSections(sections)
+        });
+      }
+      const fullHtml = '<!doctype html>\n' + cloneDoc.outerHTML;
+      const blob = new Blob([fullHtml], { type: 'text/html;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'index.html';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    function copyTextToClipboard(text) {
+      const tempInput = document.createElement('textarea');
+      tempInput.value = text;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand('copy');
+      document.body.removeChild(tempInput);
+    }
+
+    function bindAllEvents() {
+      const workspace = document.getElementById('workspace');
+      const editor = document.getElementById('editor');
+      const confirm = document.getElementById('delete-confirmation');
+      const resetDialog = document.getElementById('reset-confirmation');
+      const reminder = document.getElementById('reminder');
+      const roomDialog = document.getElementById('room-dialog');
+      const roomStatus = document.getElementById('room-status-msg');
+      const gdriveDialog = document.getElementById('gdrive-dialog');
+      const gdriveStatus = document.getElementById('gdrive-status-msg');
+      const gasPreview = document.getElementById('gas-code-preview');
+
+      if (gasPreview) gasPreview.textContent = GOOGLE_APPS_SCRIPT_TEMPLATE;
+
+      workspace.querySelector('.close').addEventListener('click', () => workspace.close());
+      editor.querySelector('.close').addEventListener('click', () => editor.close());
+      confirm.querySelector('.close').addEventListener('click', () => confirm.close());
+      resetDialog.querySelector('.close').addEventListener('click', () => resetDialog.close());
+      reminder.querySelector('.close').addEventListener('click', () => reminder.close());
+      roomDialog.querySelector('.close').addEventListener('click', () => roomDialog.close());
+      gdriveDialog.querySelector('.close').addEventListener('click', () => gdriveDialog.close());
+
+      document.getElementById('add-entry').addEventListener('click', openEditor);
+      document.getElementById('entry-form').addEventListener('submit', onEntrySubmit);
+      document.getElementById('cancel-delete').addEventListener('click', () => confirm.close());
+      document.getElementById('confirm-delete').addEventListener('click', confirmDelete);
+
+      document.getElementById('surprise').addEventListener('click', showReminder);
+      document.getElementById('another-reminder').addEventListener('click', showReminder);
+
+      document.getElementById('open-reset-dialog').addEventListener('click', () => resetDialog.showModal());
+      document.getElementById('cancel-reset').addEventListener('click', () => resetDialog.close());
+      document.getElementById('confirm-reset').addEventListener('click', () => {
+        sections = JSON.parse(JSON.stringify(canonicalSections));
+        saveSections();
+        if (currentSection) {
+          currentSection = sections.find(s => s.id === currentSection.id) || sections[0];
+          renderEntries();
+        }
+        resetDialog.close();
+        roomStatus.textContent = 'Starter examples restored ♡';
+      });
+
+      const openShareModal = () => {
+        updateRoomLabels();
+        roomStatus.textContent = '';
+        roomDialog.showModal();
+      };
+
+      const openGDriveModal = () => {
+        updateGDriveIndicators();
+        gdriveStatus.textContent = gdriveUrl
+          ? 'Google Drive is connected & syncing automatically ♡'
+          : '';
+        gdriveDialog.showModal();
+      };
+
+      document.getElementById('open-share-dialog').addEventListener('click', openShareModal);
+      document.getElementById('footer-share-btn').addEventListener('click', openShareModal);
+      document.getElementById('open-gdrive-dialog').addEventListener('click', openGDriveModal);
+      document.getElementById('footer-gdrive-btn').addEventListener('click', openGDriveModal);
+      document.getElementById('share-open-gdrive-btn').addEventListener('click', () => {
+        roomDialog.close();
+        openGDriveModal();
+      });
+
+      document.getElementById('copy-gas-code').addEventListener('click', () => {
+        copyTextToClipboard(GOOGLE_APPS_SCRIPT_TEMPLATE);
+        gdriveStatus.textContent = 'Copied 20-line Google Drive script! Paste it at script.google.com ♡';
+      });
+
+      document.getElementById('toggle-gas-preview').addEventListener('click', () => {
+        gasPreview.hidden = !gasPreview.hidden;
+      });
+
+      document.getElementById('gdrive-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const rawUrl = (document.getElementById('gdrive-url-input').value || '').trim();
+        if (!rawUrl.startsWith('https://script.google.com/')) {
+          gdriveStatus.textContent = 'Please paste a valid Google Apps Script Web App URL starting with https://script.google.com/...';
+          return;
+        }
+        gdriveUrl = rawUrl;
+        try {
+          localStorage.setItem(GDRIVE_URL_STORAGE_KEY, gdriveUrl);
+        } catch (err) {}
+        updateGDriveIndicators();
+        gdriveStatus.textContent = 'Connecting & syncing with your Google Drive...';
+
+        // First check if Drive already has saved entries, otherwise push current entries
+        const pulled = await pullFromGoogleDrive(false);
+        const pushed = await pushToGoogleDrive(sections);
+        if (pulled || pushed) {
+          gdriveStatus.textContent = 'Connected! All entries are now stored & synced in your Google Drive (our_little_world_data.json) ♡';
+        } else {
+          gdriveStatus.textContent = 'URL saved, but could not reach the script. Make sure "Who has access" is set to "Anyone" in your deployment!';
+        }
+      });
+
+      document.getElementById('pull-gdrive-btn').addEventListener('click', async () => {
+        if (!gdriveUrl) {
+          gdriveStatus.textContent = 'Paste your Google Apps Script URL first.';
+          return;
+        }
+        gdriveStatus.textContent = 'Fetching latest data from Google Drive...';
+        const ok = await pullFromGoogleDrive(false);
+        gdriveStatus.textContent = ok
+          ? 'Latest memories pulled from Google Drive! ♡'
+          : 'Could not pull from Google Drive. Check your deployment URL.';
+      });
+
+      document.getElementById('disconnect-gdrive-btn').addEventListener('click', () => {
+        gdriveUrl = '';
+        try {
+          localStorage.removeItem(GDRIVE_URL_STORAGE_KEY);
+        } catch (err) {}
+        document.getElementById('gdrive-url-input').value = '';
+        updateGDriveIndicators();
+        gdriveStatus.textContent = 'Google Drive disconnected. Using local browser storage.';
+      });
+
+      document.getElementById('download-baked-html').addEventListener('click', () => {
+        downloadBakedHtmlFile();
+        roomStatus.textContent = gdriveUrl
+          ? 'Downloaded index.html with your Google Drive Sync baked in! Host it anywhere and both devices will sync via your Drive ♡'
+          : 'Downloaded index.html! Drop it onto Cloudflare Pages, GitHub Pages, or Netlify to get a live link for her ♡';
+      });
+
+      document.getElementById('room-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const inputVal = document.getElementById('room-code-input').value;
+        roomCode = sanitizeRoomCode(inputVal);
+        try {
+          localStorage.setItem(ROOM_STORAGE_KEY, roomCode);
+        } catch (err) {}
+        updateRoomLabels();
+        sections = loadSectionsFromStorage(roomCode);
+        renderGrid();
+        if (typeof roomChangeCallback === 'function') {
+          roomChangeCallback(roomCode);
+        }
+        roomStatus.textContent = `Switched to shared room: ${roomCode} ♡`;
+      });
+
+      function buildShareableUrl() {
+        const inputVal = document.getElementById('room-code-input').value;
+        const codeToShare = sanitizeRoomCode(inputVal || roomCode);
+        const url = new URL(window.location.href);
+        url.searchParams.set('room', codeToShare);
+        if (gdriveUrl && gdriveUrl.startsWith('https://script.google.com/')) {
+          url.searchParams.set('gdrive', gdriveUrl);
+        }
+
+        try {
+          const lightSections = sections.map(sec => ({
+            id: sec.id,
+            entries: (sec.entries || []).map(en => {
+              const copy = Object.assign({}, en);
+              if (copy.photo && copy.photo.length > 2000) delete copy.photo;
+              return copy;
+            })
+          }));
+          const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(lightSections))));
+          if (encoded.length < 8000) {
+            url.hash = `world=${encoded}`;
+          }
+        } catch (err) {}
+        return url.toString();
+      }
+
+      const copyLinkBtn = document.getElementById('copy-room-link');
+      copyLinkBtn.addEventListener('click', () => {
+        const shareUrl = buildShareableUrl();
+        copyTextToClipboard(shareUrl);
+        roomStatus.textContent = 'Web link copied (with Drive Sync & memories)! Paste & send it to her ♡';
+      });
+
+      document.getElementById('native-share-btn').addEventListener('click', async () => {
+        const shareUrl = buildShareableUrl();
+        if (navigator.share) {
+          try {
+            await navigator.share({
+              title: 'Just Us — our little world',
+              text: 'I made a little corner of the internet just for us ♡',
+              url: shareUrl
+            });
+            roomStatus.textContent = 'Shared with your favorite person ♡';
+            return;
+          } catch (err) {}
+        }
+        copyLinkBtn.click();
+      });
+
+      document.getElementById('export-json-btn').addEventListener('click', () => {
+        const payload = {
+          app: 'Just Us — Our Little World',
+          roomCode: roomCode,
+          gdriveUrl: gdriveUrl || '',
+          exportedAt: new Date().toISOString(),
+          sections: sections
+        };
+        const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `our-little-world-${roomCode.toLowerCase()}.json`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        roomStatus.textContent = 'Backup .json file downloaded! ♡';
+      });
+
+      const importBtn = document.getElementById('import-json-btn');
+      const importInput = document.getElementById('import-json-input');
+      importBtn.addEventListener('click', () => importInput.click());
+      importInput.addEventListener('change', async (e) => {
+        const file = e.target.files && e.target.files[0];
+        if (!file) return;
+        try {
+          const text = await file.text();
+          const parsed = JSON.parse(text);
+          const importedSections = Array.isArray(parsed) ? parsed : parsed.sections;
+          if (Array.isArray(importedSections) && importedSections.length > 0) {
+            sections = mergeWithCanonicalSections(importedSections);
+            saveSections();
+            if (currentSection) {
+              currentSection = sections.find(s => s.id === currentSection.id) || sections[0];
+              renderEntries();
+            }
+            roomStatus.textContent = 'Keepsake loaded into our world! ♡';
+          }
+        } catch (err) {
+          roomStatus.textContent = 'Could not read keepsake file.';
+        } finally {
+          importInput.value = '';
+        }
+      });
+
+      // Automatic background polling & tab-focus sync when Google Drive is connected
+      if (gdriveUrl && gdriveUrl.startsWith('https://script.google.com/')) {
+        pullFromGoogleDrive(true);
+      }
+      setInterval(() => {
+        if (gdriveUrl && !document.hidden) {
+          pullFromGoogleDrive(true);
+        }
+      }, 15000);
+      document.addEventListener('visibilitychange', () => {
+        if (!document.hidden && gdriveUrl) {
+          pullFromGoogleDrive(true);
+        }
+      });
+    }
+
+    updateRoomLabels();
+    renderGrid();
+    bindAllEvents();
+
+    return {
+      getRoomCode: () => roomCode,
+      getSections: () => sections,
+      hasGDriveSync: () => Boolean(gdriveUrl && gdriveUrl.startsWith('https://script.google.com/')),
+      applyRemoteSections: (remoteSections, code) => {
+        sections = mergeWithCanonicalSections(remoteSections);
+        saveToLocalOnly(sections, code || roomCode);
+        renderGrid();
+        if (currentSection) {
+          const updatedSec = sections.find(s => s.id === currentSection.id);
+          if (updatedSec) {
+            currentSection = updatedSec;
+            renderEntries();
+          }
+        }
+      },
+      setSyncBannerStatus,
+      registerCloudCallbacks: (onPush, onRoomChange) => {
+        cloudPushCallback = onPush;
+        roomChangeCallback = onRoomChange;
+      }
+    };
+  })();
+</script>
+
+<script type="module">
+  // Live Cloud Synchronization Module (Runs in background and syncs across devices automatically)
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+  import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+  import { getFirestore, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+  const appInstance = window.JustUsApp;
+  const appId = typeof __app_id !== 'undefined' ? __app_id : 'our-little-world-default';
+  let db = null;
+  let auth = null;
+  let currentUser = null;
+  let unsubscribeRoomSnapshot = null;
+
+  function getRoomDocRef(code) {
+    return doc(db, 'artifacts', appId, 'public', 'data', 'our_little_world_rooms', `room_${code}`);
+  }
+
+  async function pushSectionsToCloud(dataToSave, code) {
+    if (!db || !currentUser) return false;
+    try {
+      appInstance.setSyncBannerStatus('syncing', 'SYNCING...');
+      const roomDocRef = getRoomDocRef(code);
+      await setDoc(roomDocRef, {
+        roomCode: code,
+        sectionsJson: JSON.stringify(dataToSave),
+        updatedAt: Date.now(),
+        updatedBy: currentUser.uid
+      });
+      appInstance.setSyncBannerStatus('online', 'LIVE SYNC ACTIVE ♡');
+      return true;
+    } catch (err) {
+      console.error('Failed pushing to cloud:', err);
+      appInstance.setSyncBannerStatus('offline', 'SAVED LOCALLY ♡');
+      return false;
+    }
+  }
+
+  function subscribeToRoom(code) {
+    if (!db || !currentUser) return;
+    if (unsubscribeRoomSnapshot) {
+      unsubscribeRoomSnapshot();
+      unsubscribeRoomSnapshot = null;
+    }
+
+    appInstance.setSyncBannerStatus('syncing', 'CONNECTING...');
+    const roomDocRef = getRoomDocRef(code);
+
+    unsubscribeRoomSnapshot = onSnapshot(
+      roomDocRef,
+      async (snapshot) => {
+        if (snapshot.exists()) {
+          const data = snapshot.data();
+          if (data && data.sectionsJson) {
+            try {
+              const remoteSections = JSON.parse(data.sectionsJson);
+              if (Array.isArray(remoteSections) && remoteSections.length > 0) {
+                appInstance.applyRemoteSections(remoteSections, code);
+                appInstance.setSyncBannerStatus('online', 'LIVE SYNC ACTIVE ♡');
+              }
+            } catch (parseErr) {
+              console.error('Failed to parse synced room data:', parseErr);
+            }
+          }
+        } else {
+          await pushSectionsToCloud(appInstance.getSections(), code);
+          appInstance.setSyncBannerStatus('online', 'LIVE SYNC ACTIVE ♡');
+        }
+      },
+      (error) => {
+        console.error('Firestore onSnapshot error:', error);
+        appInstance.setSyncBannerStatus('offline', 'SAVED LOCALLY ♡');
+      }
+    );
+  }
+
+  async function initCloudSync() {
+    if (!appInstance) return;
+    appInstance.registerCloudCallbacks(pushSectionsToCloud, subscribeToRoom);
+
+    try {
+      if (typeof __firebase_config === 'undefined' || !__firebase_config) {
+        appInstance.setSyncBannerStatus('online', 'SAVED IN OUR WORLD ♡');
+        return;
+      }
+
+      const firebaseConfig = JSON.parse(__firebase_config);
+      const app = initializeApp(firebaseConfig);
+      auth = getAuth(app);
+      db = getFirestore(app);
+
+      if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+        await signInWithCustomToken(auth, __initial_auth_token);
+      } else {
+        await signInAnonymously(auth);
+      }
+
+      onAuthStateChanged(auth, (user) => {
+        currentUser = user;
+        const badge = document.getElementById('user-id-display');
+        if (badge && user) {
+          badge.textContent = `SYNC ID: ${user.uid}`;
+        }
+        if (user) {
+          subscribeToRoom(appInstance.getRoomCode());
+        }
+      });
+    } catch (err) {
+      console.warn('Cloud sync unavailable, using local storage:', err);
+      appInstance.setSyncBannerStatus('online', 'SAVED IN OUR WORLD ♡');
+    }
+  }
+
+  initCloudSync();
+</script>
+</body>
+</html>
